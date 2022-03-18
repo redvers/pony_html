@@ -1,6 +1,8 @@
 
 actor Main
   new create(env: Env) =>
+    None
+/*
     let html: Html = Html(Head,
       Body([], [P([],[
                      UL([],[
@@ -20,7 +22,6 @@ actor Main
 
 
 class SamplePage
-/*
   initialModel =
 
 
