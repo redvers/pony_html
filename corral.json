@@ -1,0 +1,13 @@
+{
+  "packages": ["Html"],
+  "deps": [
+  ],
+  "info": {
+    "description": "Html Library for Ponylang",
+    "homepage": "https://github.com/redvers/pony_html",
+    "license": "",
+    "documentation_url": "",
+    "version": "",
+    "name": "Html"
+  }
+}
