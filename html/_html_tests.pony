@@ -1,13 +1,31 @@
 
 actor Main
   new create(env: Env) =>
-
-    let p: P = P([],[
+    let html: Html = Html(Head,
+      Body([], [P([],[
                      UL([],[
                             LI([], [Text.text([], "Hello")])
                             LI([], [Text.text([], "World")])
                            ])
-                    ])
-    env.out.print(p.apply())
+                    ])]))
+    env.out.print(html.apply())
 
 
+
+
+
+
+
+
+
+
+class SamplePage
+/*
+  initialModel =
+
+
+  view =
+
+
+  update =
+  */

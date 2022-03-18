@@ -2,7 +2,23 @@ primitive Attribute
 type AttributeList is Array[Attribute]
 type HtmlNodeList is Array[HtmlNode]
 
-class Html
+// Body
+class Body is HtmlNode
+  var string: String = "body"
+  var attrlist: AttributeList
+  var childlist: HtmlNodeList
+  new create(attrlist': AttributeList, childlist': HtmlNodeList) => attrlist = attrlist' ; childlist = childlist'
+  fun get_string(): String val => string
+  fun ref get_attrlist(): AttributeList => attrlist
+  fun ref get_childlist(): HtmlNodeList => childlist
+  fun ref apply(): String =>
+    var str: String trn = recover trn String end
+    str.append("<body>\n")
+    for f in get_childlist().values() do
+      str.append(f.apply())
+    end
+    str.append("</body>\n")
+    consume str
 
 // Headers
 class H1 is HtmlNode
