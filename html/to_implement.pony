@@ -1,139 +1,105 @@
-primitive HScript
-primitive HStyle
-primitive HMeta
-primitive HLink
-primitive HObject
+primitive HScript is HeadMisc
+primitive HStyle is HeadMisc
+primitive HMeta is HeadMisc
+primitive HLink is HeadMisc
+primitive HObject is HeadMisc
 
-primitive H1
-primitive H2
-primitive H3
-primitive H4
-primitive H5
-primitive H6
+primitive H1 is Heading
+primitive H2 is Heading
+primitive H3 is Heading
+primitive H4 is Heading
+primitive H5 is Heading
+primitive H6 is Heading
 
-primitive UL
-primitive OL
+primitive UL is List
+primitive OL is List
 
-primitive PRE
+primitive PRE is Preformatted
 
-primitive AttrID
-primitive AttrClass
-primitive AttrStyle
-primitive AttrTitle
+primitive AttrID is AttrCore
+primitive AttrClass is AttrCore
+primitive AttrStyle is AttrCore
+primitive AttrTitle is AttrCore
 
-primitive EvtOnClick
-primitive EvtOnDblClick
-primitive EvtOnMouseDown
-primitive EvtOnMouseUp
-primitive EvtOnMouseOver
-primitive EvtOnMouseMove
-primitive EvtOnMouseOut
-primitive EvtOnKeyPress
-primitive EvtOnKeyDown
-primitive EvtOnKeyUp
+primitive EvtOnClick is Evts
+primitive EvtOnDblClick is Evts
+primitive EvtOnMouseDown is Evts
+primitive EvtOnMouseUp is Evts
+primitive EvtOnMouseOver is Evts
+primitive EvtOnMouseMove is Evts
+primitive EvtOnMouseOut is Evts
+primitive EvtOnKeyPress is Evts
+primitive EvtOnKeyDown is Evts
+primitive EvtOnKeyUp is Evts
 
-primitive TT
-primitive I
-primitive B
-primitive BIG
-primitive SMALL
+primitive TT is FontStyle
+primitive I is FontStyle
+primitive B is FontStyle
+primitive BIG is FontStyle
+primitive SMALL is FontStyle
 
-primitive EM
-primitive STRONG
-primitive DFN
-primitive CODE
-primitive SAMP
-primitive KBD
-primitive VAR
-primitive CITE
-primitive ABBR
-primitive ACRONYM
+primitive EM is Phrase
+primitive STRONG is Phrase
+primitive DFN is Phrase
+primitive CODE is Phrase
+primitive SAMP is Phrase
+primitive KBD is Phrase
+primitive VAR is Phrase
+primitive CITE is Phrase
+primitive ABBR is Phrase
+primitive ACRONYM is Phrase
 
-primitive A
-primitive IMG
-primitive OBJECT
-primitive BR
-primitive SCRIPT
-primitive MAP
-primitive Q
-primitive SUB
-primitive SUP
-primitive SPAN
-primitive BDO
+primitive A is Special
+primitive IMG is Special
+primitive OBJECT is Special
+primitive BR is Special
+primitive SCRIPT is Special
+primitive MAP is Special
+primitive Q is Special
+primitive SUB is Special
+primitive SUP is Special
+primitive SPAN is Special
 
-primitive INPUT
-primitive SELECT
-primitive TEXTAREA
-primitive LABEL
-primitive BUTTON
+primitive INPUT is FormCtrl
+primitive SELECT is FormCtrl
+primitive TEXTAREA is FormCtrl
+primitive LABEL is FormCtrl
+primitive BUTTON is FormCtrl
+
+primitive P is Block
+primitive NOSCRIPT is Block
+primitive DL is Block
+primitive BLOCKQUOTE is Block
+primitive FORM is Block
+primitive HR is Block
+primitive TABLE is Block
+primitive FIELDSET is Block
 
 /*
-
-<!ELEMENT (%fontstyle;|%phrase;) - - (%inline;)*>
-<!ATTLIST (%fontstyle;|%phrase;)
-  %attrs;                              -- %coreattrs, %i18n, %events --
-  >
-
-<!ELEMENT (SUB|SUP) - - (%inline;)*    -- subscript, superscript -->
-<!ATTLIST (SUB|SUP)
-  %attrs;                              -- %coreattrs, %i18n, %events --
-  >
-
-<!ELEMENT SPAN - - (%inline;)*         -- generic language/style container -->
-<!ATTLIST SPAN
-  %attrs;                              -- %coreattrs, %i18n, %events --
-  %reserved;			       -- reserved for possible future use --
-  >
-
-<!ELEMENT BDO - - (%inline;)*          -- I18N BiDi over-ride -->
-<!ATTLIST BDO
-  %coreattrs;                          -- id, class, style, title --
-  lang        %LanguageCode; #IMPLIED  -- language code --
-  dir         (ltr|rtl)      #REQUIRED -- directionality --
-  >
-
-
-<!ELEMENT BR - O EMPTY                 -- forced line break -->
-<!ATTLIST BR
-  %coreattrs;                          -- id, class, style, title --
-  >
-
-<!--================== HTML content models ===============================-->
-
-<!--
-    HTML has two basic content models:
-
-        %inline;     character level elements and text strings
-        %block;      block-like elements e.g. paragraphs and lists
--->
-
-<!ENTITY % block
-     "P | %heading; | %list; | %preformatted; | DL | DIV | NOSCRIPT |
-      BLOCKQUOTE | FORM | HR | TABLE | FIELDSET | ADDRESS">
-
-<!ENTITY % flow "%block; | %inline;">
-
-<!--=================== Document Body ====================================-->
-
-<!ELEMENT BODY O O (%block;|SCRIPT)+ +(INS|DEL) -- document body -->
-<!ATTLIST BODY
-  %attrs;                              -- %coreattrs, %i18n, %events --
-  onload          %Script;   #IMPLIED  -- the document has been loaded --
-  onunload        %Script;   #IMPLIED  -- the document has been removed --
-  >
-
 <!ELEMENT ADDRESS - - (%inline;)* -- information on author -->
 <!ATTLIST ADDRESS
   %attrs;                              -- %coreattrs, %i18n, %events --
   >
+*/
+class ADDRESS is Block
+  new create(attrs: Array[Attrs], children: Array[InLine]) => None
 
+/*
 <!ELEMENT DIV - - (%flow;)*            -- generic language/style container -->
 <!ATTLIST DIV
   %attrs;                              -- %coreattrs, %i18n, %events --
   %reserved;                           -- reserved for possible future use --
   >
+*/
+class DIV is Block
+  new create(attrs: Array[Attrs], children: Array[Flow]) => None
 
+primitive Rect
+primitive Circle
+primitive Poly
+primitive DefaultShape
 
+/*
 <!--================== The Anchor Element ================================-->
 
 <!ENTITY % Shape "(rect|circle|poly|default)">
